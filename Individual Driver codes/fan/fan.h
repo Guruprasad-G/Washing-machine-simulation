@@ -15,5 +15,8 @@
 #define ON    1
 #define OFF   0
 
+void fan_on_and_off(void);
+static void init_config_fan(void);
+
 #endif	/* MAIN_H */
 

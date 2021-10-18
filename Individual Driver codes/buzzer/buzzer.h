@@ -14,7 +14,10 @@
 
 #define ON    1
 #define OFF   0
-    
+
+static void init_config_buzzer(void);
+void buzzer_on_and_off(void);
+
 #endif	/* MAIN_H */
 
 

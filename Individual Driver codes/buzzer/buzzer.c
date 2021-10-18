@@ -14,10 +14,10 @@ static void init_config_buzzer(void)
     BUZZER=OFF;
 }
 
-void buzzer_on_and_off(int delay) 
+void buzzer_on_and_off(void) 
 {
     BUZZER=ON;
-    __delay_ms(delay);
+    __delay_ms(2000);
     BUZZER=OFF;
 }
 

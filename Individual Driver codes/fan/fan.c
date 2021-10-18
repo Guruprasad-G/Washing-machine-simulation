@@ -14,10 +14,10 @@ static void init_config_fan(void)
     FAN = OFF;
 }
 
-void fan_on_and_off(int delay) 
+void fan_on_and_off(void) 
 {
     FAN = ON;
-    __delay_ms(delay);
+    __delay_ms(3000);
     FAN = OFF;
 }
 
