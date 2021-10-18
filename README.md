@@ -106,9 +106,6 @@ If you have any feedback, please reach out to us at
 3.Writing codes using Datasheets.
 
   
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
 
   
 
