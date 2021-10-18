@@ -92,10 +92,14 @@ If you have any feedback, please reach out to us at
  
  anusha.bk828@gmail.com
 
+or
+
+use the [Discussions section](https://github.com/Guruprasad-G/washing-machine-interface/discussions) in the repository.
+
   
 ## 🔗 Links
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anusha-bk-b929b21b1/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/        )
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/guruprasad--g)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in//)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in//)
 
@@ -104,13 +108,13 @@ If you have any feedback, please reach out to us at
 
 ## Lessons Learned
 
-1 How to create project using mplab xide
+1. How to create project using MPLAB XIDE.
 
-2.To use picsimlab.
+2. To use PICSimLab.
 
-3.Writing codes using Datasheets.
+3. Writing device driver codes using Datasheets.
 
-  
+4. Embedded software development
 
   
 
