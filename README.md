@@ -72,6 +72,11 @@ https://lcgamboa.github.io/picsimlab_docs/0.8.9/PICGenios.html
 
 https://lcgamboa.github.io/picsimlab_docs/0.8.9/Boards.html#x17-160004
 
+https://www.sparkfun.com/datasheets/LCD/HD44780.pdf
+
+https://ww1.microchip.com/downloads/en/devicedoc/39582b.pdf
+
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your mplab  tools file
