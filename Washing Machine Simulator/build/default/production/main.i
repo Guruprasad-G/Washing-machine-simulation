@@ -1754,7 +1754,7 @@ void run_program(unsigned char key);
 unsigned char operation_mode;
 int wash_time, rinse_time, spin_time;
 unsigned char reset_mode, program_no=0, water_level_index=0;
-char *washing_prog[] = {"Daily","Heavy","Delicates","Whites","stain wash","EcoCottons","WooLlens","BedSheets","Rinse+Dry","Dry only","Wash Only","Aqua store"};
+char *washing_prog[] = {"Daily","Heavy","Delicates","Whites","Stain Wash","EcoCottons","Woollens","BedSheets","Rinse+Dry","Dry only","Wash Only","Aqua store"};
 
 char *water_level_arr[]={"Auto","Low","Medium","High","Max"};
 
@@ -1774,7 +1774,7 @@ static void init_config(void){
        TRISC2 = 0;
 
        TRISC1 = 0;
-# 36 "main.c"
+
        PEIE = 1;
        GIE = 1;
 }
@@ -1876,16 +1876,21 @@ void power_on_screen(void)
        for(unsigned char i=0; i<16; i++)
        {
             clcd_putch(0XFF, (0x80 + i));
+            _delay((unsigned long)((100)*(20000000/4000.0)));
        }
+
        clcd_print("  POWERING ON   ",(0xC0 + 0));
        clcd_print(" WASHING MACHINE",(0x90 + 0));
 
 
-       for(unsigned char i=0; i<16; i++)
+       for(unsigned char i=16; i>0; i--)
        {
          clcd_putch(0XFF, (0xD0 + i));
+         _delay((unsigned long)((100)*(20000000/4000.0)));
        }
-       _delay((unsigned long)((3000)*(20000000/4000.0)));
+       clcd_putch(0XFF, (0xD0 + 0));
+       _delay((unsigned long)((500)*(20000000/4000.0)));
+
 }
 
 void washing_program_display(unsigned char key)
@@ -1902,9 +1907,9 @@ void washing_program_display(unsigned char key)
               program_no = 0;
              clear_screen();
     }
-# 176 "main.c"
+
     clcd_print("Washing Program", (0x80 + 0));
-    clcd_putch('*', (0xC0 + 0));
+    clcd_putch('>', (0xC0 + 0));
 
 
     if(program_no <= 9)
@@ -1945,9 +1950,9 @@ void water_level_display(unsigned char key)
         clear_screen();
 
     }
-# 228 "main.c"
+
     clcd_print("Water Level", (0x80 + 0));
-    clcd_putch('*', (0xC0 + 0));
+    clcd_putch('>', (0xC0 + 0));
     if(water_level_index <= 2)
     {
         clcd_print(water_level_arr[water_level_index], (0xC0 + 2));
@@ -2095,8 +2100,7 @@ void set_time_for_program(void)
                     min = 0;
             }
             break;
-
-            }
+      }
 
 }
 
@@ -2167,12 +2171,7 @@ void run_program(unsigned char key)
             TMR2ON = 1;
 
             RC2 = 1;
-
-
-
-        }
-
-
+          }
 
     if(key == 0x1F)
     {
@@ -2213,33 +2212,30 @@ void run_program(unsigned char key)
         clcd_print("Wash",(0x80 + 11));
     }
 
-            clcd_putch((min/10)+'0',(0xC0 + 6));
-            clcd_putch((min%10)+'0',(0xC0 + 7));
-            clcd_putch(':',(0xC0 + 8));
-            clcd_putch((sec/10)+'0',(0xC0 + 9));
-            clcd_putch((sec%10)+'0',(0xC0 + 10));
+    clcd_putch((min/10)+'0',(0xC0 + 6));
+    clcd_putch((min%10)+'0',(0xC0 + 7));
+    clcd_putch(':',(0xC0 + 8));
+    clcd_putch((sec/10)+'0',(0xC0 + 9));
+    clcd_putch((sec%10)+'0',(0xC0 + 10));
 
-            if(sec == 0 && min == 0)
-            {
+    if(sec == 0 && min == 0)
+    {
 
-                TMR2ON = 0;
+          TMR2ON = 0;
 
-                RC2 =0;
+          RC2 =0;
 
-                RC1 = 1;
+          RC1 = 1;
 
-                clear_screen();
-                clcd_print("Prog. Completed", (0x80 + 0));
-                clcd_print("Remove Cloths",(0xC0 + 0));
-                _delay((unsigned long)((2000)*(20000000/4000.0)));
-                RC1 = 0;
-                operation_mode = 0X01;
-                reset_mode = 0X10;
-                clear_screen();
-
-
-
-
-            }
+          clear_screen();
+          clcd_print("Prog. Completed", (0x80 + 0));
+          clcd_print("Remove Cloths",(0xC0 + 0));
+          _delay((unsigned long)((2000)*(20000000/4000.0)));
+          RC1 = 0;
+          operation_mode = 0X01;
+          reset_mode = 0X10;
+          clear_screen();
 
     }
+
+}

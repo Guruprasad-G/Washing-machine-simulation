@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Washing_Machine_Simulator.X
+PROJECTNAME=Washing Machine Simulator
 
 # Active Configuration
 DEFAULTCONF=default

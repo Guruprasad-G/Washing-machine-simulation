@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\Washing_Machine_Simulator.X.production.hex">
+  <executable name="dist/default/production\Washing_Machine_Simulator.production.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>5747</used>
-      <free>2445</free>
+      <used>5781</used>
+      <free>2411</free>
     </memory>
     <memory name="data">
       <units>bytes</units>

@@ -248,7 +248,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "3 main.c
-[; ;main.c: 3: char *washing_prog[] = {"Daily","Heavy","Delicates","Whites","stain wash","EcoCottons","WooLlens","BedSheets","Rinse+Dry","Dry only","Wash Only","Aqua store"};
+[; ;main.c: 3: char *washing_prog[] = {"Daily","Heavy","Delicates","Whites","Stain Wash","EcoCottons","Woollens","BedSheets","Rinse+Dry","Dry only","Wash Only","Aqua store"};
 [p x WDTE  =  OFF ]
 "5
 [; ;main.c: 5: char *water_level_arr[]={"Auto","Low","Medium","High","Max"};
@@ -320,58 +320,60 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 22:        TRISC1 = 0;
 [e ( _init_timer2 ..  ]
 "25
+[; ;main.c: 25:        GIE = 1;
 [e = _TRISC2 -> -> 0 `i `b ]
 "27
+[; ;main.c: 27: 
 [e = _TRISC1 -> -> 0 `i `b ]
-"36
-[; ;main.c: 36:        PEIE = 1;
+"29
+[; ;main.c: 29:     unsigned char key =0x3F, key_copy;
 [e = _PEIE -> -> 1 `i `b ]
-"37
-[; ;main.c: 37:        GIE = 1;
+"30
+[; ;main.c: 30:     operation_mode = 0X01;
 [e = _GIE -> -> 1 `i `b ]
-"38
-[; ;main.c: 38: }
+"31
+[; ;main.c: 31:     reset_mode = 0X10;
 [e :UE 95 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"40
-[; ;main.c: 40: void main(void) {
+"33
+[; ;main.c: 33: 
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"41
-[; ;main.c: 41:     unsigned char key =0x3F, key_copy;
+"34
+[; ;main.c: 34:     clcd_print(" Press Key5 To  ", (0x80 + 0));
 [v _key `uc ~T0 @X0 1 a ]
 [e = _key -> -> 63 `i `uc ]
 [v _key_copy `uc ~T0 @X0 1 a ]
-"42
-[; ;main.c: 42:     operation_mode = 0X01;
+"35
+[; ;main.c: 35:     clcd_print("    Power ON    ", (0xC0 + 0));
 [e = _operation_mode -> -> 1 `i `uc ]
-"43
-[; ;main.c: 43:     reset_mode = 0X10;
+"36
+[; ;main.c: 36:     clcd_print(" Washing Machine", (0x90 + 0));
 [e = _reset_mode -> -> 16 `i `uc ]
-"44
-[; ;main.c: 44:     init_config();
+"37
+[; ;main.c: 37: 
 [e ( _init_config ..  ]
-"46
-[; ;main.c: 46:     clcd_print(" Press Key5 To  ", (0x80 + 0));
+"39
+[; ;main.c: 39:    {
 [e ( _clcd_print (2 , :s 18C -> + -> 128 `i -> 0 `i `uc ]
-"47
-[; ;main.c: 47:     clcd_print("    Power ON    ", (0xC0 + 0));
+"40
+[; ;main.c: 40:        for(int j=3000; j--; );
 [e ( _clcd_print (2 , :s 19C -> + -> 192 `i -> 0 `i `uc ]
-"48
-[; ;main.c: 48:     clcd_print(" Washing Machine", (0x90 + 0));
+"41
+[; ;main.c: 41: 
 [e ( _clcd_print (2 , :s 20C -> + -> 144 `i -> 0 `i `uc ]
-"50
-[; ;main.c: 50:    while( read_digital_keypad(1) != 0x2F)
+"43
+[; ;main.c: 43: 
 [e $U 97  ]
 [e :U 98 ]
-"51
-[; ;main.c: 51:    {
+"44
+[; ;main.c: 44:     clear_screen();
 {
-"52
-[; ;main.c: 52:        for(int j=3000; j--; );
+"45
+[; ;main.c: 45: 
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 3000 `i ]
@@ -381,29 +383,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ != -- _j -> 1 `i -> 0 `i 100  ]
 [e :U 101 ]
 }
-"54
-[; ;main.c: 54:    }
+"47
+[; ;main.c: 47:    power_on_screen();
 }
 [e :U 97 ]
-"50
-[; ;main.c: 50:    while( read_digital_keypad(1) != 0x2F)
+"43
+[; ;main.c: 43: 
 [e $ != -> ( _read_digital_keypad (1 -> -> 1 `i `uc `i -> 47 `i 98  ]
 [e :U 99 ]
-"56
-[; ;main.c: 56:     clear_screen();
+"49
+[; ;main.c: 49: 
 [e ( _clear_screen ..  ]
-"59
-[; ;main.c: 59:    power_on_screen();
+"52
+[; ;main.c: 52:          for(int j=3000; j--; );
 [e ( _power_on_screen ..  ]
-"62
-[; ;main.c: 62:     while(1) {
+"55
+[; ;main.c: 55:         {
 [e :U 105 ]
 {
-"63
-[; ;main.c: 63:         key = read_digital_keypad(1);
+"56
+[; ;main.c: 56: 
 [e = _key ( _read_digital_keypad (1 -> -> 1 `i `uc ]
-"64
-[; ;main.c: 64:          for(int j=3000; j--; );
+"57
+[; ;main.c: 57:             operation_mode = 0X02;
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 3000 `i ]
@@ -413,154 +415,154 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ != -- _j -> 1 `i -> 0 `i 107  ]
 [e :U 108 ]
 }
-"66
-[; ;main.c: 66:          if(key == 0xB7 && operation_mode == 0X01)
+"59
+[; ;main.c: 59:         }
 [e $ ! && == -> _key `i -> 183 `i == -> _operation_mode `i -> 1 `i 111  ]
-"67
-[; ;main.c: 67:         {
+"60
+[; ;main.c: 60:         else if(key == 0xB7 && operation_mode == 0X02)
 {
-"69
-[; ;main.c: 69:             operation_mode = 0X02;
+"62
+[; ;main.c: 62: 
 [e = _operation_mode -> -> 2 `i `uc ]
-"70
-[; ;main.c: 70:             reset_mode = 0x11;
+"63
+[; ;main.c: 63:             set_time_for_program();
 [e = _reset_mode -> -> 17 `i `uc ]
-"71
-[; ;main.c: 71:         }
+"64
+[; ;main.c: 64: 
 }
 [e $U 112  ]
-"72
-[; ;main.c: 72:         else if(key == 0xB7 && operation_mode == 0X02)
+"65
+[; ;main.c: 65:             clear_screen();
 [e :U 111 ]
 [e $ ! && == -> _key `i -> 183 `i == -> _operation_mode `i -> 2 `i 113  ]
+"66
+[; ;main.c: 66: 
+{
+"68
+[; ;main.c: 68:             clcd_print(" SW5: START ", (0xC0 + 0));
+[e ( _set_time_for_program ..  ]
+"70
+[; ;main.c: 70:             operation_mode = 0X03;
+[e ( _clear_screen ..  ]
+"72
+[; ;main.c: 72:         else if(key == 0x2F && operation_mode == 0X05)
+[e ( _clcd_print (2 , :s 21C -> + -> 128 `i -> 0 `i `uc ]
 "73
 [; ;main.c: 73:         {
-{
-"75
-[; ;main.c: 75:             set_time_for_program();
-[e ( _set_time_for_program ..  ]
-"77
-[; ;main.c: 77:             clear_screen();
-[e ( _clear_screen ..  ]
-"79
-[; ;main.c: 79:             clcd_print("Press Switch", (0x80 + 0));
-[e ( _clcd_print (2 , :s 21C -> + -> 128 `i -> 0 `i `uc ]
-"80
-[; ;main.c: 80:             clcd_print(" SW5: START ", (0xC0 + 0));
 [e ( _clcd_print (2 , :s 22C -> + -> 192 `i -> 0 `i `uc ]
-"81
-[; ;main.c: 81:             clcd_print(" SW6: STOP ", (0x90 + 0));
+"74
+[; ;main.c: 74:             TMR2ON = 1;
 [e ( _clcd_print (2 , :s 23C -> + -> 144 `i -> 0 `i `uc ]
-"82
-[; ;main.c: 82:             operation_mode = 0X03;
+"75
+[; ;main.c: 75:             RC2 = 1;
 [e = _operation_mode -> -> 3 `i `uc ]
-"83
-[; ;main.c: 83:         }
+"76
+[; ;main.c: 76:             operation_mode = 0X04;
 }
 [e $U 114  ]
-"84
-[; ;main.c: 84:         else if(key == 0x2F && operation_mode == 0X05)
+"77
+[; ;main.c: 77:         }
 [e :U 113 ]
 [e $ ! && == -> _key `i -> 47 `i == -> _operation_mode `i -> 5 `i 115  ]
-"85
-[; ;main.c: 85:         {
+"78
+[; ;main.c: 78: 
 {
-"86
-[; ;main.c: 86:             TMR2ON = 1;
+"79
+[; ;main.c: 79:         switch(operation_mode)
 [e = _TMR2ON -> -> 1 `i `b ]
-"87
-[; ;main.c: 87:             RC2 = 1;
+"80
+[; ;main.c: 80:         {
 [e = _RC2 -> -> 1 `i `b ]
-"88
-[; ;main.c: 88:             operation_mode = 0X04;
+"81
+[; ;main.c: 81: 
 [e = _operation_mode -> -> 4 `i `uc ]
-"89
-[; ;main.c: 89:         }
+"82
+[; ;main.c: 82:             case 0X01:
 }
 [e :U 115 ]
 [e :U 114 ]
 [e :U 112 ]
-"91
-[; ;main.c: 91:         switch(operation_mode)
+"84
+[; ;main.c: 84:                  break;
 [e $U 117  ]
-"92
-[; ;main.c: 92:         {
+"85
+[; ;main.c: 85:             case 0X02:
 {
-"94
-[; ;main.c: 94:             case 0X01:
+"87
+[; ;main.c: 87:                 break;
 [e :U 118 ]
-"95
-[; ;main.c: 95:                  washing_program_display(key);
+"88
+[; ;main.c: 88:             case 0X03:
 [e ( _washing_program_display (1 _key ]
-"96
-[; ;main.c: 96:                  break;
+"89
+[; ;main.c: 89:                 if(key == 0x2F)
 [e $U 116  ]
-"97
-[; ;main.c: 97:             case 0X02:
+"90
+[; ;main.c: 90:                 {
 [e :U 119 ]
-"98
-[; ;main.c: 98:                 water_level_display(key);
+"91
+[; ;main.c: 91:                     operation_mode = 0X04;
 [e ( _water_level_display (1 _key ]
-"99
-[; ;main.c: 99:                 break;
+"92
+[; ;main.c: 92:                     reset_mode = 0x12;
 [e $U 116  ]
-"100
-[; ;main.c: 100:             case 0X03:
+"93
+[; ;main.c: 93:                     continue;
 [e :U 120 ]
-"101
-[; ;main.c: 101:                 if(key == 0x2F)
+"94
+[; ;main.c: 94:                 }
 [e $ ! == -> _key `i -> 47 `i 121  ]
-"102
-[; ;main.c: 102:                 {
+"95
+[; ;main.c: 95:                 else if(key == 0x1F)
 {
-"103
-[; ;main.c: 103:                     operation_mode = 0X04;
+"96
+[; ;main.c: 96:                 {
 [e = _operation_mode -> -> 4 `i `uc ]
-"104
-[; ;main.c: 104:                     reset_mode = 0x12;
+"97
+[; ;main.c: 97:                     operation_mode = 0X01;
 [e = _reset_mode -> -> 18 `i `uc ]
-"105
-[; ;main.c: 105:                     continue;
+"98
+[; ;main.c: 98:                     reset_mode = 0X10;
 [e $U 104  ]
-"106
-[; ;main.c: 106:                 }
+"99
+[; ;main.c: 99:                     continue;
 }
 [e $U 122  ]
-"107
-[; ;main.c: 107:                 else if(key == 0x1F)
+"100
+[; ;main.c: 100: 
 [e :U 121 ]
 [e $ ! == -> _key `i -> 31 `i 123  ]
-"108
-[; ;main.c: 108:                 {
+"101
+[; ;main.c: 101:                 }
 {
-"109
-[; ;main.c: 109:                     operation_mode = 0X01;
+"102
+[; ;main.c: 102:                 break;
 [e = _operation_mode -> -> 1 `i `uc ]
-"110
-[; ;main.c: 110:                     reset_mode = 0X10;
+"103
+[; ;main.c: 103:             case 0X04:
 [e = _reset_mode -> -> 16 `i `uc ]
-"111
-[; ;main.c: 111:                     continue;
+"104
+[; ;main.c: 104:                 run_program(key);
 [e $U 104  ]
-"113
-[; ;main.c: 113:                 }
+"106
+[; ;main.c: 106: 
 }
 [e :U 123 ]
 [e :U 122 ]
-"114
-[; ;main.c: 114:                 break;
+"107
+[; ;main.c: 107:         }
 [e $U 116  ]
-"115
-[; ;main.c: 115:             case 0X04:
+"108
+[; ;main.c: 108:         reset_mode = 0X00;
 [e :U 124 ]
-"116
-[; ;main.c: 116:                 run_program(key);
+"109
+[; ;main.c: 109:     }
 [e ( _run_program (1 _key ]
-"117
-[; ;main.c: 117:                 break;
+"110
+[; ;main.c: 110: 
 [e $U 116  ]
-"119
-[; ;main.c: 119:         }
+"112
+[; ;main.c: 112: 
 }
 [e $U 116  ]
 [e :U 117 ]
@@ -570,416 +572,425 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 124
  116 ]
 [e :U 116 ]
-"120
-[; ;main.c: 120:         reset_mode = 0X00;
+"113
+[; ;main.c: 113: void clear_screen(void)
 [e = _reset_mode -> -> 0 `i `uc ]
-"121
-[; ;main.c: 121:     }
+"114
+[; ;main.c: 114: {
 }
 [e :U 104 ]
 [e $U 105  ]
 [e :U 106 ]
-"123
-[; ;main.c: 123: }
+"116
+[; ;main.c: 116:      _delay((unsigned long)((100)*(20000000/4000000.0)));
 [e :UE 96 ]
 }
-"125
-[; ;main.c: 125: void clear_screen(void)
+"118
+[; ;main.c: 118: 
 [v _clear_screen `(v ~T0 @X0 1 ef ]
-"126
-[; ;main.c: 126: {
+"119
+[; ;main.c: 119: void power_on_screen(void)
 {
 [e :U _clear_screen ]
 [f ]
-"127
-[; ;main.c: 127:      clcd_write(0x01, 0);
+"120
+[; ;main.c: 120: {
 [e ( _clcd_write (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"128
-[; ;main.c: 128:      _delay((unsigned long)((100)*(20000000/4000000.0)));
+"121
+[; ;main.c: 121: 
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"129
-[; ;main.c: 129: }
+"122
+[; ;main.c: 122:        for(unsigned char i=0; i<16; i++)
 [e :UE 125 ]
 }
-"131
-[; ;main.c: 131: void power_on_screen(void)
+"124
+[; ;main.c: 124:             clcd_putch(0XFF, (0x80 + i));
 [v _power_on_screen `(v ~T0 @X0 1 ef ]
-"132
-[; ;main.c: 132: {
+"125
+[; ;main.c: 125:             _delay((unsigned long)((100)*(20000000/4000.0)));
 {
 [e :U _power_on_screen ]
 [f ]
-"134
-[; ;main.c: 134:        for(unsigned char i=0; i<16; i++)
+"127
+[; ;main.c: 127: 
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 16 `i 127  ]
 [e $U 128  ]
 [e :U 127 ]
-"135
-[; ;main.c: 135:        {
+"128
+[; ;main.c: 128:        clcd_print("  POWERING ON   ",(0xC0 + 0));
 {
-"136
-[; ;main.c: 136:             clcd_putch(0XFF, (0x80 + i));
+"129
+[; ;main.c: 129:        clcd_print(" WASHING MACHINE",(0x90 + 0));
 [e ( _clcd_putch (2 , -> -> 255 `i `uc -> + -> 128 `i -> _i `i `uc ]
-"137
-[; ;main.c: 137:        }
+"130
+[; ;main.c: 130: 
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"131
+[; ;main.c: 131: 
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 16 `i 127  ]
 [e :U 128 ]
 }
-"138
-[; ;main.c: 138:        clcd_print("  POWERING ON   ",(0xC0 + 0));
+"133
+[; ;main.c: 133:        {
 [e ( _clcd_print (2 , :s 24C -> + -> 192 `i -> 0 `i `uc ]
-"139
-[; ;main.c: 139:        clcd_print(" WASHING MACHINE",(0x90 + 0));
+"134
+[; ;main.c: 134:          clcd_putch(0XFF, (0xD0 + i));
 [e ( _clcd_print (2 , :s 25C -> + -> 144 `i -> 0 `i `uc ]
-"142
-[; ;main.c: 142:        for(unsigned char i=0; i<16; i++)
+"137
+[; ;main.c: 137:        clcd_putch(0XFF, (0xD0 + 0));
 {
 [v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 16 `i 130  ]
+[e = _i -> -> 16 `i `uc ]
+[e $ > -> _i `i -> 0 `i 130  ]
 [e $U 131  ]
 [e :U 130 ]
-"143
-[; ;main.c: 143:        {
+"138
+[; ;main.c: 138:        _delay((unsigned long)((500)*(20000000/4000.0)));
 {
-"144
-[; ;main.c: 144:          clcd_putch(0XFF, (0xD0 + i));
+"139
+[; ;main.c: 139: 
 [e ( _clcd_putch (2 , -> -> 255 `i `uc -> + -> 208 `i -> _i `i `uc ]
-"145
-[; ;main.c: 145:        }
+"140
+[; ;main.c: 140: }
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"141
+[; ;main.c: 141: 
 }
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 16 `i 130  ]
+[e -- _i -> -> 1 `i `uc ]
+[e $ > -> _i `i -> 0 `i 130  ]
 [e :U 131 ]
 }
-"146
-[; ;main.c: 146:        _delay((unsigned long)((3000)*(20000000/4000.0)));
-[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"147
-[; ;main.c: 147: }
+"142
+[; ;main.c: 142: void washing_program_display(unsigned char key)
+[e ( _clcd_putch (2 , -> -> 255 `i `uc -> + -> 208 `i -> 0 `i `uc ]
+"143
+[; ;main.c: 143: {
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"145
+[; ;main.c: 145:     {
 [e :UE 126 ]
 }
-"149
-[; ;main.c: 149: void washing_program_display(unsigned char key)
+"147
+[; ;main.c: 147:         program_no = 0;
 [v _washing_program_display `(v ~T0 @X0 1 ef1`uc ]
-"150
-[; ;main.c: 150: {
+"148
+[; ;main.c: 148:     }
 {
 [e :U _washing_program_display ]
-"149
-[; ;main.c: 149: void washing_program_display(unsigned char key)
+"147
+[; ;main.c: 147:         program_no = 0;
 [v _key `uc ~T0 @X0 1 r1 ]
-"150
-[; ;main.c: 150: {
+"148
+[; ;main.c: 148:     }
 [f ]
-"151
-[; ;main.c: 151:     if( reset_mode == 0X10)
+"149
+[; ;main.c: 149:     if (key == 0x37)
 [e $ ! == -> _reset_mode `i -> 16 `i 134  ]
-"152
-[; ;main.c: 152:     {
+"150
+[; ;main.c: 150:     {
 {
-"153
-[; ;main.c: 153:         clear_screen();
+"151
+[; ;main.c: 151:        program_no++;
 [e ( _clear_screen ..  ]
-"154
-[; ;main.c: 154:         program_no = 0;
+"152
+[; ;main.c: 152:        if( program_no == 12)
 [e = _program_no -> -> 0 `i `uc ]
-"155
-[; ;main.c: 155:     }
+"153
+[; ;main.c: 153:               program_no = 0;
 }
 [e :U 134 ]
-"156
-[; ;main.c: 156:     if (key == 0x37)
+"154
+[; ;main.c: 154:              clear_screen();
 [e $ ! == -> _key `i -> 55 `i 135  ]
-"157
-[; ;main.c: 157:     {
+"155
+[; ;main.c: 155:     }
 {
-"158
-[; ;main.c: 158:        program_no++;
+"156
+[; ;main.c: 156: 
 [e ++ _program_no -> -> 1 `i `uc ]
-"159
-[; ;main.c: 159:        if( program_no == 12)
+"157
+[; ;main.c: 157:     clcd_print("Washing Program", (0x80 + 0));
 [e $ ! == -> _program_no `i -> 12 `i 136  ]
-"160
-[; ;main.c: 160:               program_no = 0;
+"158
+[; ;main.c: 158:     clcd_putch('>', (0xC0 + 0));
 [e = _program_no -> -> 0 `i `uc ]
 [e :U 136 ]
-"161
-[; ;main.c: 161:              clear_screen();
+"159
+[; ;main.c: 159: 
 [e ( _clear_screen ..  ]
-"162
-[; ;main.c: 162:     }
+"160
+[; ;main.c: 160: 
 }
 [e :U 135 ]
-"176
-[; ;main.c: 176:     clcd_print("Washing Program", (0x80 + 0));
+"162
+[; ;main.c: 162:     {
 [e ( _clcd_print (2 , :s 26C -> + -> 128 `i -> 0 `i `uc ]
-"177
-[; ;main.c: 177:     clcd_putch('*', (0xC0 + 0));
-[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
-"180
-[; ;main.c: 180:     if(program_no <= 9)
+"163
+[; ;main.c: 163:           clcd_print(washing_prog[program_no],(0xC0 + 2));
+[e ( _clcd_putch (2 , -> -> 62 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+"166
+[; ;main.c: 166:     }
 [e $ ! <= -> _program_no `i -> 9 `i 137  ]
-"181
-[; ;main.c: 181:     {
+"167
+[; ;main.c: 167:     else if(program_no == 10)
 {
-"182
-[; ;main.c: 182:           clcd_print(washing_prog[program_no],(0xC0 + 2));
+"168
+[; ;main.c: 168:     {
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> _program_no `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 192 `i -> 2 `i `uc ]
-"183
-[; ;main.c: 183:           clcd_print(washing_prog[program_no + 1],(0x90 + 2));
+"169
+[; ;main.c: 169:           clcd_print(washing_prog[program_no],(0xC0 + 2));
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> -> + -> _program_no `i -> 1 `i `ui `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 144 `i -> 2 `i `uc ]
-"184
-[; ;main.c: 184:           clcd_print(washing_prog[program_no + 2],(0xD0 + 2));
+"170
+[; ;main.c: 170:           clcd_print(washing_prog[program_no + 1],(0x90 + 2));
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> -> + -> _program_no `i -> 2 `i `ui `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 208 `i -> 2 `i `uc ]
-"185
-[; ;main.c: 185:     }
+"171
+[; ;main.c: 171:           clcd_print(washing_prog[0],(0xD0 + 2));
 }
 [e $U 138  ]
-"186
-[; ;main.c: 186:     else if(program_no == 10)
+"172
+[; ;main.c: 172: 
 [e :U 137 ]
 [e $ ! == -> _program_no `i -> 10 `i 139  ]
-"187
-[; ;main.c: 187:     {
+"173
+[; ;main.c: 173:     }
 {
-"188
-[; ;main.c: 188:           clcd_print(washing_prog[program_no],(0xC0 + 2));
+"174
+[; ;main.c: 174:     else if(program_no == 11)
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> _program_no `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 192 `i -> 2 `i `uc ]
-"189
-[; ;main.c: 189:           clcd_print(washing_prog[program_no + 1],(0x90 + 2));
+"175
+[; ;main.c: 175:     {
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> -> + -> _program_no `i -> 1 `i `ui `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 144 `i -> 2 `i `uc ]
-"190
-[; ;main.c: 190:           clcd_print(washing_prog[0],(0xD0 + 2));
+"176
+[; ;main.c: 176:           clcd_print(washing_prog[program_no], (0xC0 + 2));
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> -> -> 0 `i `ui `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 208 `i -> 2 `i `uc ]
-"192
-[; ;main.c: 192:     }
+"178
+[; ;main.c: 178:           clcd_print(washing_prog[1], (0xD0 + 2));
 }
 [e $U 140  ]
-"193
-[; ;main.c: 193:     else if(program_no == 11)
+"179
+[; ;main.c: 179:     }
 [e :U 139 ]
 [e $ ! == -> _program_no `i -> 11 `i 141  ]
-"194
-[; ;main.c: 194:     {
+"180
+[; ;main.c: 180: }
 {
-"195
-[; ;main.c: 195:           clcd_print(washing_prog[program_no], (0xC0 + 2));
+"181
+[; ;main.c: 181: 
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> _program_no `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 192 `i -> 2 `i `uc ]
-"196
-[; ;main.c: 196:           clcd_print(washing_prog[0], (0x90 + 2));
+"182
+[; ;main.c: 182: void water_level_display(unsigned char key)
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> -> -> 0 `i `ui `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 144 `i -> 2 `i `uc ]
-"197
-[; ;main.c: 197:           clcd_print(washing_prog[1], (0xD0 + 2));
+"183
+[; ;main.c: 183: {
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> -> -> 1 `i `ui `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 208 `i -> 2 `i `uc ]
-"198
-[; ;main.c: 198:     }
+"184
+[; ;main.c: 184:     if( reset_mode == 0x11)
 }
 [e :U 141 ]
 [e :U 140 ]
 [e :U 138 ]
-"199
-[; ;main.c: 199: }
+"185
+[; ;main.c: 185:     {
 [e :UE 133 ]
 }
-"201
-[; ;main.c: 201: void water_level_display(unsigned char key)
+"187
+[; ;main.c: 187:         clear_screen();
 [v _water_level_display `(v ~T0 @X0 1 ef1`uc ]
-"202
-[; ;main.c: 202: {
+"188
+[; ;main.c: 188:     }
 {
 [e :U _water_level_display ]
-"201
-[; ;main.c: 201: void water_level_display(unsigned char key)
+"187
+[; ;main.c: 187:         clear_screen();
 [v _key `uc ~T0 @X0 1 r1 ]
-"202
-[; ;main.c: 202: {
+"188
+[; ;main.c: 188:     }
 [f ]
-"203
-[; ;main.c: 203:     if( reset_mode == 0x11)
+"189
+[; ;main.c: 189:     if(key == 0x37)
 [e $ ! == -> _reset_mode `i -> 17 `i 143  ]
-"204
-[; ;main.c: 204:     {
+"190
+[; ;main.c: 190:     {
 {
-"205
-[; ;main.c: 205:         water_level_index = 0;
+"191
+[; ;main.c: 191:         water_level_index++;
 [e = _water_level_index -> -> 0 `i `uc ]
-"206
-[; ;main.c: 206:         clear_screen();
+"192
+[; ;main.c: 192:         if(water_level_index == 5)
 [e ( _clear_screen ..  ]
-"207
-[; ;main.c: 207:     }
+"193
+[; ;main.c: 193:         {
 }
 [e :U 143 ]
-"208
-[; ;main.c: 208:     if(key == 0x37)
+"194
+[; ;main.c: 194:             water_level_index = 0;
 [e $ ! == -> _key `i -> 55 `i 144  ]
-"209
-[; ;main.c: 209:     {
+"195
+[; ;main.c: 195:         }
 {
-"210
-[; ;main.c: 210:         water_level_index++;
+"196
+[; ;main.c: 196:         clear_screen();
 [e ++ _water_level_index -> -> 1 `i `uc ]
-"211
-[; ;main.c: 211:         if(water_level_index == 5)
+"197
+[; ;main.c: 197: 
 [e $ ! == -> _water_level_index `i -> 5 `i 145  ]
-"212
-[; ;main.c: 212:         {
+"198
+[; ;main.c: 198:     }
 {
-"213
-[; ;main.c: 213:             water_level_index = 0;
+"199
+[; ;main.c: 199: 
 [e = _water_level_index -> -> 0 `i `uc ]
-"214
-[; ;main.c: 214:         }
+"200
+[; ;main.c: 200:     clcd_print("Water Level", (0x80 + 0));
 }
 [e :U 145 ]
-"215
-[; ;main.c: 215:         clear_screen();
+"201
+[; ;main.c: 201:     clcd_putch('>', (0xC0 + 0));
 [e ( _clear_screen ..  ]
-"217
-[; ;main.c: 217:     }
+"203
+[; ;main.c: 203:     {
 }
 [e :U 144 ]
-"228
-[; ;main.c: 228:     clcd_print("Water Level", (0x80 + 0));
+"205
+[; ;main.c: 205:         clcd_print(water_level_arr[water_level_index + 1], (0x90 + 2));
 [e ( _clcd_print (2 , :s 27C -> + -> 128 `i -> 0 `i `uc ]
-"229
-[; ;main.c: 229:     clcd_putch('*', (0xC0 + 0));
-[e ( _clcd_putch (2 , -> -> 42 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
-"230
-[; ;main.c: 230:     if(water_level_index <= 2)
+"206
+[; ;main.c: 206:         clcd_print(water_level_arr[water_level_index + 2], (0xD0 + 2));
+[e ( _clcd_putch (2 , -> -> 62 `ui `uc -> + -> 192 `i -> 0 `i `uc ]
+"207
+[; ;main.c: 207:     }
 [e $ ! <= -> _water_level_index `i -> 2 `i 146  ]
-"231
-[; ;main.c: 231:     {
+"208
+[; ;main.c: 208:     else if(water_level_index == 3)
 {
-"232
-[; ;main.c: 232:         clcd_print(water_level_arr[water_level_index], (0xC0 + 2));
+"209
+[; ;main.c: 209:     {
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> _water_level_index `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 192 `i -> 2 `i `uc ]
-"233
-[; ;main.c: 233:         clcd_print(water_level_arr[water_level_index + 1], (0x90 + 2));
+"210
+[; ;main.c: 210:         clcd_print(water_level_arr[water_level_index], (0xC0 + 2));
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> -> + -> _water_level_index `i -> 1 `i `ui `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 144 `i -> 2 `i `uc ]
-"234
-[; ;main.c: 234:         clcd_print(water_level_arr[water_level_index + 2], (0xD0 + 2));
+"211
+[; ;main.c: 211:         clcd_print(water_level_arr[water_level_index + 1], (0x90 + 2));
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> -> + -> _water_level_index `i -> 2 `i `ui `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 208 `i -> 2 `i `uc ]
-"235
-[; ;main.c: 235:     }
+"212
+[; ;main.c: 212:         clcd_print(water_level_arr[0],(0xD0 + 2));
 }
 [e $U 147  ]
-"236
-[; ;main.c: 236:     else if(water_level_index == 3)
+"213
+[; ;main.c: 213:     }
 [e :U 146 ]
 [e $ ! == -> _water_level_index `i -> 3 `i 148  ]
-"237
-[; ;main.c: 237:     {
+"214
+[; ;main.c: 214:      else if(water_level_index == 4)
 {
-"238
-[; ;main.c: 238:         clcd_print(water_level_arr[water_level_index], (0xC0 + 2));
+"215
+[; ;main.c: 215:     {
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> _water_level_index `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 192 `i -> 2 `i `uc ]
-"239
-[; ;main.c: 239:         clcd_print(water_level_arr[water_level_index + 1], (0x90 + 2));
+"216
+[; ;main.c: 216:         clcd_print(water_level_arr[water_level_index], (0xC0 + 2));
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> -> + -> _water_level_index `i -> 1 `i `ui `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 144 `i -> 2 `i `uc ]
-"240
-[; ;main.c: 240:         clcd_print(water_level_arr[0],(0xD0 + 2));
+"217
+[; ;main.c: 217:         clcd_print(water_level_arr[0], (0x90 + 2));
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 208 `i -> 2 `i `uc ]
-"241
-[; ;main.c: 241:     }
+"218
+[; ;main.c: 218:         clcd_print(water_level_arr[1], (0xD0 + 2));
 }
 [e $U 149  ]
-"242
-[; ;main.c: 242:      else if(water_level_index == 4)
+"219
+[; ;main.c: 219:     }
 [e :U 148 ]
 [e $ ! == -> _water_level_index `i -> 4 `i 150  ]
-"243
-[; ;main.c: 243:     {
+"220
+[; ;main.c: 220: }
 {
-"244
-[; ;main.c: 244:         clcd_print(water_level_arr[water_level_index], (0xC0 + 2));
+"221
+[; ;main.c: 221: 
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> _water_level_index `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 192 `i -> 2 `i `uc ]
-"245
-[; ;main.c: 245:         clcd_print(water_level_arr[0], (0x90 + 2));
+"222
+[; ;main.c: 222: void set_time_for_program(void)
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 144 `i -> 2 `i `uc ]
-"246
-[; ;main.c: 246:         clcd_print(water_level_arr[1], (0xD0 + 2));
+"223
+[; ;main.c: 223: {
 [e ( _clcd_print (2 , -> *U + &U _water_level_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _water_level_arr `ui `ux `*Cuc -> + -> 208 `i -> 2 `i `uc ]
-"247
-[; ;main.c: 247:     }
+"224
+[; ;main.c: 224:     switch(program_no)
 }
 [e :U 150 ]
 [e :U 149 ]
 [e :U 147 ]
-"248
-[; ;main.c: 248: }
+"225
+[; ;main.c: 225:     {
 [e :UE 142 ]
 }
-"250
-[; ;main.c: 250: void set_time_for_program(void)
+"227
+[; ;main.c: 227:         switch(water_level_index)
 [v _set_time_for_program `(v ~T0 @X0 1 ef ]
-"251
-[; ;main.c: 251: {
+"228
+[; ;main.c: 228:         {
 {
 [e :U _set_time_for_program ]
 [f ]
-"252
-[; ;main.c: 252:     switch(program_no)
+"229
+[; ;main.c: 229: 
 [e $U 153  ]
-"253
-[; ;main.c: 253:     {
+"230
+[; ;main.c: 230:             case 1:
 {
-"254
-[; ;main.c: 254:     case 0:
+"231
+[; ;main.c: 231:                 sec = 33;
 [e :U 154 ]
-"255
-[; ;main.c: 255:         switch(water_level_index)
+"232
+[; ;main.c: 232:                 min = 0;
 [e $U 156  ]
-"256
-[; ;main.c: 256:         {
+"233
+[; ;main.c: 233:             break;
 {
-"258
-[; ;main.c: 258:             case 1:
+"235
+[; ;main.c: 235:             case 2:
 [e :U 157 ]
-"259
-[; ;main.c: 259:                 sec = 33;
+"236
+[; ;main.c: 236:                 sec = 41;
 [e = _sec -> -> 33 `i `uc ]
-"260
-[; ;main.c: 260:                 min = 0;
+"237
+[; ;main.c: 237:                 min = 0;
 [e = _min -> -> 0 `i `uc ]
-"261
-[; ;main.c: 261:             break;
+"238
+[; ;main.c: 238:                 break;
 [e $U 155  ]
-"262
-[; ;main.c: 262:             case 0:
+"239
+[; ;main.c: 239:              case 3:
 [e :U 158 ]
-"263
-[; ;main.c: 263:             case 2:
+"240
+[; ;main.c: 240:              case 4:
 [e :U 159 ]
-"264
-[; ;main.c: 264:                 sec = 41;
+"241
+[; ;main.c: 241:                 sec = 45;
 [e = _sec -> -> 41 `i `uc ]
-"265
-[; ;main.c: 265:                 min = 0;
+"242
+[; ;main.c: 242:                 min = 0;
 [e = _min -> -> 0 `i `uc ]
-"266
-[; ;main.c: 266:                 break;
+"243
+[; ;main.c: 243:         }
 [e $U 155  ]
-"267
-[; ;main.c: 267:              case 3:
+"244
+[; ;main.c: 244:         break;
 [e :U 160 ]
-"268
-[; ;main.c: 268:              case 4:
+"245
+[; ;main.c: 245:      case 1:
 [e :U 161 ]
-"269
-[; ;main.c: 269:                 sec = 45;
+"246
+[; ;main.c: 246:          switch(water_level_index)
 [e = _sec -> -> 45 `i `uc ]
-"270
-[; ;main.c: 270:                 min = 0;
+"247
+[; ;main.c: 247:          {
 [e = _min -> -> 0 `i `uc ]
-"271
-[; ;main.c: 271:         }
+"248
+[; ;main.c: 248: 
 }
 [e $U 155  ]
 [e :U 156 ]
@@ -990,56 +1001,56 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 161
  155 ]
 [e :U 155 ]
-"272
-[; ;main.c: 272:         break;
+"249
+[; ;main.c: 249:      case 1:
 [e $U 152  ]
-"273
-[; ;main.c: 273:      case 1:
+"250
+[; ;main.c: 250:          sec = 43;
 [e :U 162 ]
-"274
-[; ;main.c: 274:          switch(water_level_index)
+"251
+[; ;main.c: 251:          min = 0;
 [e $U 164  ]
-"275
-[; ;main.c: 275:          {
+"252
+[; ;main.c: 252:      case 0:
 {
-"277
-[; ;main.c: 277:      case 1:
+"254
+[; ;main.c: 254:         sec = 50;
 [e :U 165 ]
-"278
-[; ;main.c: 278:          sec = 43;
+"255
+[; ;main.c: 255:         min = 0;
 [e = _sec -> -> 43 `i `uc ]
-"279
-[; ;main.c: 279:          min = 0;
+"256
+[; ;main.c: 256:         break;
 [e = _min -> -> 0 `i `uc ]
-"280
-[; ;main.c: 280:      case 0:
+"257
+[; ;main.c: 257:      case 3:
 [e :U 166 ]
-"281
-[; ;main.c: 281:      case 2:
+"258
+[; ;main.c: 258:      case 4:
 [e :U 167 ]
-"282
-[; ;main.c: 282:         sec = 50;
+"259
+[; ;main.c: 259:         sec = 57;
 [e = _sec -> -> 50 `i `uc ]
-"283
-[; ;main.c: 283:         min = 0;
+"260
+[; ;main.c: 260:         min = 0;
 [e = _min -> -> 0 `i `uc ]
-"284
-[; ;main.c: 284:         break;
+"261
+[; ;main.c: 261:          }
 [e $U 163  ]
-"285
-[; ;main.c: 285:      case 3:
+"262
+[; ;main.c: 262:          break;
 [e :U 168 ]
-"286
-[; ;main.c: 286:      case 4:
+"263
+[; ;main.c: 263:         case 2:
 [e :U 169 ]
-"287
-[; ;main.c: 287:         sec = 57;
+"264
+[; ;main.c: 264:             switch(water_level_index)
 [e = _sec -> -> 57 `i `uc ]
-"288
-[; ;main.c: 288:         min = 0;
+"265
+[; ;main.c: 265:             {
 [e = _min -> -> 0 `i `uc ]
-"289
-[; ;main.c: 289:          }
+"266
+[; ;main.c: 266: 
 }
 [e $U 163  ]
 [e :U 164 ]
@@ -1050,50 +1061,50 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 169
  163 ]
 [e :U 163 ]
-"290
-[; ;main.c: 290:          break;
+"267
+[; ;main.c: 267:                 case 1:
 [e $U 152  ]
-"291
-[; ;main.c: 291:         case 2:
+"268
+[; ;main.c: 268:                 case 0:
 [e :U 170 ]
-"292
-[; ;main.c: 292:             switch(water_level_index)
+"269
+[; ;main.c: 269:                 case 2:
 [e $U 172  ]
-"293
-[; ;main.c: 293:             {
+"270
+[; ;main.c: 270:                     sec = 26;
 {
-"295
-[; ;main.c: 295:                 case 1:
+"272
+[; ;main.c: 272:                     break;
 [e :U 173 ]
-"296
-[; ;main.c: 296:                 case 0:
+"273
+[; ;main.c: 273:                 case 3:
 [e :U 174 ]
-"297
-[; ;main.c: 297:                 case 2:
+"274
+[; ;main.c: 274:                 case 4:
 [e :U 175 ]
-"298
-[; ;main.c: 298:                     sec = 26;
+"275
+[; ;main.c: 275:                 sec = 31;
 [e = _sec -> -> 26 `i `uc ]
-"299
-[; ;main.c: 299:                     min = 0;
+"276
+[; ;main.c: 276:                 min = 0;
 [e = _min -> -> 0 `i `uc ]
-"300
-[; ;main.c: 300:                     break;
+"277
+[; ;main.c: 277:             }
 [e $U 171  ]
-"301
-[; ;main.c: 301:                 case 3:
+"278
+[; ;main.c: 278:             break;
 [e :U 176 ]
-"302
-[; ;main.c: 302:                 case 4:
+"279
+[; ;main.c: 279:         case 3:
 [e :U 177 ]
-"303
-[; ;main.c: 303:                 sec = 31;
+"280
+[; ;main.c: 280:             sec = 16;
 [e = _sec -> -> 31 `i `uc ]
-"304
-[; ;main.c: 304:                 min = 0;
+"281
+[; ;main.c: 281:             min =1;
 [e = _min -> -> 0 `i `uc ]
-"305
-[; ;main.c: 305:             }
+"282
+[; ;main.c: 282:             break;
 }
 [e $U 171  ]
 [e :U 172 ]
@@ -1104,98 +1115,98 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 177
  171 ]
 [e :U 171 ]
-"306
-[; ;main.c: 306:             break;
+"283
+[; ;main.c: 283:         case 4:
 [e $U 152  ]
-"307
-[; ;main.c: 307:         case 3:
+"284
+[; ;main.c: 284: 
 [e :U 178 ]
-"308
-[; ;main.c: 308:             sec = 16;
+"285
+[; ;main.c: 285:             sec = 36;
 [e = _sec -> -> 16 `i `uc ]
-"309
-[; ;main.c: 309:             min =1;
+"286
+[; ;main.c: 286:             min = 1;
 [e = _min -> -> 1 `i `uc ]
-"310
-[; ;main.c: 310:             break;
+"287
+[; ;main.c: 287:         case 5:
 [e $U 152  ]
-"311
-[; ;main.c: 311:         case 4:
+"288
+[; ;main.c: 288:             sec = 28;
 [e :U 179 ]
-"313
-[; ;main.c: 313:             sec = 36;
+"290
+[; ;main.c: 290:             break;
 [e = _sec -> -> 36 `i `uc ]
-"314
-[; ;main.c: 314:             min = 1;
+"291
+[; ;main.c: 291:         case 6:
 [e = _min -> -> 1 `i `uc ]
-"315
-[; ;main.c: 315:         case 5:
+"292
+[; ;main.c: 292:             sec = 29;
 [e :U 180 ]
-"316
-[; ;main.c: 316:             sec = 28;
+"293
+[; ;main.c: 293:             break;
 [e = _sec -> -> 28 `i `uc ]
-"317
-[; ;main.c: 317:             min = 0;
+"294
+[; ;main.c: 294:         case 7:
 [e = _min -> -> 0 `i `uc ]
-"318
-[; ;main.c: 318:             break;
+"295
+[; ;main.c: 295:             switch(water_level_index)
 [e $U 152  ]
-"319
-[; ;main.c: 319:         case 6:
+"296
+[; ;main.c: 296:             {
 [e :U 181 ]
-"320
-[; ;main.c: 320:             sec = 29;
+"297
+[; ;main.c: 297: 
 [e = _sec -> -> 29 `i `uc ]
-"321
-[; ;main.c: 321:             break;
+"298
+[; ;main.c: 298:                 case 1:
 [e $U 152  ]
-"322
-[; ;main.c: 322:         case 7:
+"299
+[; ;main.c: 299:                 sec = 46;
 [e :U 182 ]
-"323
-[; ;main.c: 323:             switch(water_level_index)
+"300
+[; ;main.c: 300:                 min = 0;
 [e $U 184  ]
-"324
-[; ;main.c: 324:             {
+"301
+[; ;main.c: 301:                 case 0:
 {
-"326
-[; ;main.c: 326:                 case 1:
+"303
+[; ;main.c: 303:                     sec = 53;
 [e :U 185 ]
-"327
-[; ;main.c: 327:                 sec = 46;
+"304
+[; ;main.c: 304:                     min = 0;
 [e = _sec -> -> 46 `i `uc ]
-"328
-[; ;main.c: 328:                 min = 0;
+"305
+[; ;main.c: 305:                     break;
 [e = _min -> -> 0 `i `uc ]
-"329
-[; ;main.c: 329:                 case 0:
+"306
+[; ;main.c: 306:                 case 3:
 [e :U 186 ]
-"330
-[; ;main.c: 330:                 case 2:
+"307
+[; ;main.c: 307:                 case 4:
 [e :U 187 ]
-"331
-[; ;main.c: 331:                     sec = 53;
+"308
+[; ;main.c: 308:                     sec = 60;
 [e = _sec -> -> 53 `i `uc ]
-"332
-[; ;main.c: 332:                     min = 0;
+"309
+[; ;main.c: 309:                     min = 0;
 [e = _min -> -> 0 `i `uc ]
-"333
-[; ;main.c: 333:                     break;
+"310
+[; ;main.c: 310:             }
 [e $U 183  ]
-"334
-[; ;main.c: 334:                 case 3:
+"311
+[; ;main.c: 311:             break;
 [e :U 188 ]
-"335
-[; ;main.c: 335:                 case 4:
+"312
+[; ;main.c: 312:         case 8:
 [e :U 189 ]
-"336
-[; ;main.c: 336:                     sec = 60;
+"313
+[; ;main.c: 313:             switch(water_level_index)
 [e = _sec -> -> 60 `i `uc ]
-"337
-[; ;main.c: 337:                     min = 0;
+"314
+[; ;main.c: 314:             {
 [e = _min -> -> 0 `i `uc ]
-"338
-[; ;main.c: 338:             }
+"315
+[; ;main.c: 315: 
 }
 [e $U 183  ]
 [e :U 184 ]
@@ -1206,47 +1217,47 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 189
  183 ]
 [e :U 183 ]
-"339
-[; ;main.c: 339:             break;
+"316
+[; ;main.c: 316:                 case 1:
 [e $U 152  ]
-"340
-[; ;main.c: 340:         case 8:
+"317
+[; ;main.c: 317:                     sec = 18;
 [e :U 190 ]
-"341
-[; ;main.c: 341:             switch(water_level_index)
+"318
+[; ;main.c: 318:                     min = 0;
 [e $U 192  ]
-"342
-[; ;main.c: 342:             {
+"319
+[; ;main.c: 319:                 case 0:
 {
-"344
-[; ;main.c: 344:                 case 1:
+"321
+[; ;main.c: 321:                 case 3:
 [e :U 193 ]
-"345
-[; ;main.c: 345:                     sec = 18;
+"322
+[; ;main.c: 322:                 case 4:
 [e = _sec -> -> 18 `i `uc ]
-"346
-[; ;main.c: 346:                     min = 0;
+"323
+[; ;main.c: 323:                     sec = 20;
 [e = _min -> -> 0 `i `uc ]
-"347
-[; ;main.c: 347:                 case 0:
+"324
+[; ;main.c: 324:                     min = 0;
 [e :U 194 ]
-"348
-[; ;main.c: 348:                 case 2:
+"325
+[; ;main.c: 325:             }
 [e :U 195 ]
-"349
-[; ;main.c: 349:                 case 3:
+"326
+[; ;main.c: 326:             break;
 [e :U 196 ]
-"350
-[; ;main.c: 350:                 case 4:
+"327
+[; ;main.c: 327:         case 9:
 [e :U 197 ]
-"351
-[; ;main.c: 351:                     sec = 20;
+"328
+[; ;main.c: 328:             sec = 6;
 [e = _sec -> -> 20 `i `uc ]
-"352
-[; ;main.c: 352:                     min = 0;
+"329
+[; ;main.c: 329:             break;
 [e = _min -> -> 0 `i `uc ]
-"353
-[; ;main.c: 353:             }
+"330
+[; ;main.c: 330:         case 10:
 }
 [e $U 191  ]
 [e :U 192 ]
@@ -1257,68 +1268,68 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 197
  191 ]
 [e :U 191 ]
-"354
-[; ;main.c: 354:             break;
+"331
+[; ;main.c: 331:         case 11:
 [e $U 152  ]
-"355
-[; ;main.c: 355:         case 9:
+"332
+[; ;main.c: 332:             switch(water_level_index)
 [e :U 198 ]
-"356
-[; ;main.c: 356:             sec = 6;
+"333
+[; ;main.c: 333:             {
 [e = _sec -> -> 6 `i `uc ]
-"357
-[; ;main.c: 357:             break;
+"334
+[; ;main.c: 334: 
 [e $U 152  ]
-"358
-[; ;main.c: 358:         case 10:
+"335
+[; ;main.c: 335:                 case 1:
 [e :U 199 ]
-"359
-[; ;main.c: 359:         case 11:
+"336
+[; ;main.c: 336:                     sec = 16;
 [e :U 200 ]
-"360
-[; ;main.c: 360:             switch(water_level_index)
+"337
+[; ;main.c: 337:                     min = 0;
 [e $U 202  ]
-"361
-[; ;main.c: 361:             {
+"338
+[; ;main.c: 338:                 case 0:
 {
-"363
-[; ;main.c: 363:                 case 1:
+"340
+[; ;main.c: 340:                     sec = 21;
 [e :U 203 ]
-"364
-[; ;main.c: 364:                     sec = 16;
+"341
+[; ;main.c: 341:                     min = 0;
 [e = _sec -> -> 16 `i `uc ]
-"365
-[; ;main.c: 365:                     min = 0;
+"342
+[; ;main.c: 342:                     break;
 [e = _min -> -> 0 `i `uc ]
-"366
-[; ;main.c: 366:                 case 0:
+"343
+[; ;main.c: 343:                 case 3:
 [e :U 204 ]
-"367
-[; ;main.c: 367:                 case 2:
+"344
+[; ;main.c: 344:                 case 4:
 [e :U 205 ]
-"368
-[; ;main.c: 368:                     sec = 21;
+"345
+[; ;main.c: 345:                     sec = 26;
 [e = _sec -> -> 21 `i `uc ]
-"369
-[; ;main.c: 369:                     min = 0;
+"346
+[; ;main.c: 346:                     min = 0;
 [e = _min -> -> 0 `i `uc ]
-"370
-[; ;main.c: 370:                     break;
+"347
+[; ;main.c: 347:             }
 [e $U 201  ]
-"371
-[; ;main.c: 371:                 case 3:
+"348
+[; ;main.c: 348:             break;
 [e :U 206 ]
-"372
-[; ;main.c: 372:                 case 4:
+"349
+[; ;main.c: 349:       }
 [e :U 207 ]
-"373
-[; ;main.c: 373:                     sec = 26;
+"350
+[; ;main.c: 350: 
 [e = _sec -> -> 26 `i `uc ]
-"374
-[; ;main.c: 374:                     min = 0;
+"351
+[; ;main.c: 351: }
 [e = _min -> -> 0 `i `uc ]
-"375
-[; ;main.c: 375:             }
+"352
+[; ;main.c: 352: 
 }
 [e $U 201  ]
 [e :U 202 ]
@@ -1329,11 +1340,11 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 207
  201 ]
 [e :U 201 ]
-"376
-[; ;main.c: 376:             break;
+"353
+[; ;main.c: 353: void door_status_check(void)
 [e $U 152  ]
-"378
-[; ;main.c: 378:             }
+"354
+[; ;main.c: 354: {
 }
 [e $U 152  ]
 [e :U 153 ]
@@ -1351,366 +1362,363 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 11 `i 200
  152 ]
 [e :U 152 ]
-"380
-[; ;main.c: 380: }
+"356
+[; ;main.c: 356:     {
 [e :UE 151 ]
 }
-"382
-[; ;main.c: 382: void door_status_check(void)
+"358
+[; ;main.c: 358:         RC1 = 1;
 [v _door_status_check `(v ~T0 @X0 1 ef ]
-"383
-[; ;main.c: 383: {
+"359
+[; ;main.c: 359:         RC2 = 0;
 {
 [e :U _door_status_check ]
 [f ]
-"384
-[; ;main.c: 384:     if(RB0 == 0)
+"360
+[; ;main.c: 360:         TMR2ON = 0;
 [e $ ! == -> _RB0 `i -> 0 `i 209  ]
-"385
-[; ;main.c: 385:     {
+"361
+[; ;main.c: 361: 
 {
-"387
-[; ;main.c: 387:         RC1 = 1;
+"363
+[; ;main.c: 363:         clcd_print("DOOR : OPEN", (0x80 + 0));
 [e = _RC1 -> -> 1 `i `b ]
-"388
-[; ;main.c: 388:         RC2 = 0;
+"364
+[; ;main.c: 364:         clcd_print("Please Close", (0x90 + 0));
 [e = _RC2 -> -> 0 `i `b ]
-"389
-[; ;main.c: 389:         TMR2ON = 0;
+"365
+[; ;main.c: 365: 
 [e = _TMR2ON -> -> 0 `i `b ]
-"391
-[; ;main.c: 391:         clear_screen();
+"367
+[; ;main.c: 367:         while( RB0 == 0 )
 [e ( _clear_screen ..  ]
-"392
-[; ;main.c: 392:         clcd_print("DOOR : OPEN", (0x80 + 0));
+"368
+[; ;main.c: 368:         {
 [e ( _clcd_print (2 , :s 28C -> + -> 128 `i -> 0 `i `uc ]
-"393
-[; ;main.c: 393:         clcd_print("Please Close", (0x90 + 0));
+"369
+[; ;main.c: 369:             ;
 [e ( _clcd_print (2 , :s 29C -> + -> 144 `i -> 0 `i `uc ]
-"396
-[; ;main.c: 396:         while( RB0 == 0 )
+"372
+[; ;main.c: 372: 
 [e $U 210  ]
 [e :U 211 ]
-"397
-[; ;main.c: 397:         {
+"373
+[; ;main.c: 373:         RC2 = 1;
 {
-"399
-[; ;main.c: 399:         }
+"375
+[; ;main.c: 375: 
 }
 [e :U 210 ]
-"396
-[; ;main.c: 396:         while( RB0 == 0 )
+"372
+[; ;main.c: 372: 
 [e $ == -> _RB0 `i -> 0 `i 211  ]
 [e :U 212 ]
-"400
-[; ;main.c: 400:         clear_screen();
+"376
+[; ;main.c: 376:         RC1 = 0;
 [e ( _clear_screen ..  ]
-"402
-[; ;main.c: 402:         RC2 = 1;
+"378
+[; ;main.c: 378:         clcd_print("TIME", (0xC0 + 0));
 [e = _RC2 -> -> 1 `i `b ]
-"403
-[; ;main.c: 403:         TMR2ON = 1;
+"379
+[; ;main.c: 379:         clcd_print("5-START  6-PAUSE", (0xD0 + 0));
 [e = _TMR2ON -> -> 1 `i `b ]
-"405
-[; ;main.c: 405:         RC1 = 0;
+"381
+[; ;main.c: 381:     }
 [e = _RC1 -> -> 0 `i `b ]
-"406
-[; ;main.c: 406:         clcd_print("Function -", (0x80 + 0));
+"382
+[; ;main.c: 382: }
 [e ( _clcd_print (2 , :s 30C -> + -> 128 `i -> 0 `i `uc ]
-"407
-[; ;main.c: 407:         clcd_print("TIME", (0xC0 + 0));
+"383
+[; ;main.c: 383: 
 [e ( _clcd_print (2 , :s 31C -> + -> 192 `i -> 0 `i `uc ]
-"408
-[; ;main.c: 408:         clcd_print("5-START  6-PAUSE", (0xD0 + 0));
+"384
+[; ;main.c: 384: void run_program(unsigned char key)
 [e ( _clcd_print (2 , :s 32C -> + -> 208 `i -> 0 `i `uc ]
-"410
-[; ;main.c: 410:     }
+"386
+[; ;main.c: 386:     door_status_check();
 }
 [e :U 209 ]
-"411
-[; ;main.c: 411: }
+"387
+[; ;main.c: 387:     static int total_time, time;
 [e :UE 208 ]
 }
-"413
-[; ;main.c: 413: void run_program(unsigned char key)
+"389
+[; ;main.c: 389:         {
 [v _run_program `(v ~T0 @X0 1 ef1`uc ]
-"414
-[; ;main.c: 414: {
+"390
+[; ;main.c: 390:             clear_screen();
 {
 [e :U _run_program ]
-"413
-[; ;main.c: 413: void run_program(unsigned char key)
+"389
+[; ;main.c: 389:         {
 [v _key `uc ~T0 @X0 1 r1 ]
-"414
-[; ;main.c: 414: {
+"390
+[; ;main.c: 390:             clear_screen();
 [f ]
-"415
-[; ;main.c: 415:     door_status_check();
+"391
+[; ;main.c: 391:             clcd_print("Prog: ",(0x80 + 0));
 [e ( _door_status_check ..  ]
-"416
-[; ;main.c: 416:     static int total_time, time;
+"392
+[; ;main.c: 392:             clcd_print(washing_prog[program_no],(0x80 + 6));
 [v F903 `i ~T0 @X0 1 s total_time ]
 [v F904 `i ~T0 @X0 1 s time ]
-"417
-[; ;main.c: 417:         if(reset_mode == 0x12)
+"393
+[; ;main.c: 393:             clcd_print("Time:",(0xC0 + 0));
 [e $ ! == -> _reset_mode `i -> 18 `i 214  ]
-"418
-[; ;main.c: 418:         {
+"394
+[; ;main.c: 394: 
 {
-"419
-[; ;main.c: 419:             clear_screen();
+"395
+[; ;main.c: 395: 
 [e ( _clear_screen ..  ]
-"420
-[; ;main.c: 420:             clcd_print("Prog: ",(0x80 + 0));
+"396
+[; ;main.c: 396:             clcd_putch((min/10)+'0',(0xC0 + 6));
 [e ( _clcd_print (2 , :s 33C -> + -> 128 `i -> 0 `i `uc ]
-"421
-[; ;main.c: 421:             clcd_print(washing_prog[program_no],(0x80 + 6));
+"397
+[; ;main.c: 397:             clcd_putch((min%10)+'0',(0xC0 + 7));
 [e ( _clcd_print (2 , -> *U + &U _washing_prog * -> _program_no `ux -> -> # *U &U _washing_prog `ui `ux `*Cuc -> + -> 128 `i -> 6 `i `uc ]
-"422
-[; ;main.c: 422:             clcd_print("Time:",(0xC0 + 0));
+"398
+[; ;main.c: 398:             clcd_putch(':',(0xC0 + 8));
 [e ( _clcd_print (2 , :s 34C -> + -> 192 `i -> 0 `i `uc ]
-"425
-[; ;main.c: 425:             clcd_putch((min/10)+'0',(0xC0 + 6));
+"401
+[; ;main.c: 401:             clcd_print("(MM:SS)",(0x90 + 5));
 [e ( _clcd_putch (2 , -> + -> / -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 6 `i `uc ]
-"426
-[; ;main.c: 426:             clcd_putch((min%10)+'0',(0xC0 + 7));
+"402
+[; ;main.c: 402:             _delay((unsigned long)((2000)*(20000000/4000.0)));
 [e ( _clcd_putch (2 , -> + -> % -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
-"427
-[; ;main.c: 427:             clcd_putch(':',(0xC0 + 8));
+"403
+[; ;main.c: 403: 
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 8 `i `uc ]
-"428
-[; ;main.c: 428:             clcd_putch((sec/10)+'0',(0xC0 + 9));
+"404
+[; ;main.c: 404: 
 [e ( _clcd_putch (2 , -> + -> / -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 9 `i `uc ]
-"429
-[; ;main.c: 429:             clcd_putch((sec%10)+'0',(0xC0 + 10));
+"405
+[; ;main.c: 405:             clear_screen();
 [e ( _clcd_putch (2 , -> + -> % -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
-"430
-[; ;main.c: 430:             clcd_print("(MM:SS)",(0x90 + 5));
+"406
+[; ;main.c: 406:             clcd_print("Function -",(0x80 + 0));
 [e ( _clcd_print (2 , :s 35C -> + -> 144 `i -> 5 `i `uc ]
-"431
-[; ;main.c: 431:             _delay((unsigned long)((2000)*(20000000/4000.0)));
+"407
+[; ;main.c: 407:             clcd_print("TIME",(0xC0 + 0));
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"434
-[; ;main.c: 434:             clear_screen();
+"410
+[; ;main.c: 410: 
 [e ( _clear_screen ..  ]
-"435
-[; ;main.c: 435:             clcd_print("Function -",(0x80 + 0));
+"411
+[; ;main.c: 411:             time = total_time = (min*60+sec);
 [e ( _clcd_print (2 , :s 36C -> + -> 128 `i -> 0 `i `uc ]
-"436
-[; ;main.c: 436:             clcd_print("TIME",(0xC0 + 0));
+"412
+[; ;main.c: 412:             wash_time = (int)(total_time *0.4);
 [e ( _clcd_print (2 , :s 37C -> + -> 192 `i -> 0 `i `uc ]
-"437
-[; ;main.c: 437:             clcd_print("5-START  6-PAUSE", (0xD0 + 0));
+"413
+[; ;main.c: 413:             rinse_time =(int)(total_time *0.12);
 [e ( _clcd_print (2 , :s 38C -> + -> 208 `i -> 0 `i `uc ]
-"440
-[; ;main.c: 440:             time = total_time = (min*60+sec);
+"416
+[; ;main.c: 416: 
 [e = F904 = F903 + * -> _min `i -> 60 `i -> _sec `i ]
-"441
-[; ;main.c: 441:             wash_time = (int)(total_time *0.4);
+"417
+[; ;main.c: 417:             TMR2ON = 1;
 [e = _wash_time -> * -> F903 `d .0.4 `i ]
-"442
-[; ;main.c: 442:             rinse_time =(int)(total_time *0.12);
+"418
+[; ;main.c: 418: 
 [e = _rinse_time -> * -> F903 `d .0.12 `i ]
-"443
-[; ;main.c: 443:             spin_time = total_time - wash_time - rinse_time;
+"419
+[; ;main.c: 419:             RC2 = 1;
 [e = _spin_time - - F903 _wash_time _rinse_time ]
-"446
-[; ;main.c: 446:             TMR2ON = 1;
+"422
+[; ;main.c: 422:     if(key == 0x1F)
 [e = _TMR2ON -> -> 1 `i `b ]
-"448
-[; ;main.c: 448:             RC2 = 1;
+"424
+[; ;main.c: 424:         TMR2ON = 0;
 [e = _RC2 -> -> 1 `i `b ]
-"452
-[; ;main.c: 452:         }
+"425
+[; ;main.c: 425:         RC2 = 0;
 }
 [e :U 214 ]
-"456
-[; ;main.c: 456:     if(key == 0x1F)
+"427
+[; ;main.c: 427:     }
 [e $ ! == -> _key `i -> 31 `i 215  ]
-"457
-[; ;main.c: 457:     {
+"428
+[; ;main.c: 428: 
 {
-"458
-[; ;main.c: 458:         TMR2ON = 0;
+"429
+[; ;main.c: 429:     total_time = (min*60+sec);
 [e = _TMR2ON -> -> 0 `i `b ]
-"459
-[; ;main.c: 459:         RC2 = 0;
+"430
+[; ;main.c: 430:     if(program_no <= 7)
 [e = _RC2 -> -> 0 `i `b ]
-"460
-[; ;main.c: 460:         operation_mode = 0X05;
+"431
+[; ;main.c: 431:     {
 [e = _operation_mode -> -> 5 `i `uc ]
-"461
-[; ;main.c: 461:     }
+"432
+[; ;main.c: 432:     if(total_time >= (time - wash_time))
 }
 [e :U 215 ]
-"463
-[; ;main.c: 463:     total_time = (min*60+sec);
+"434
+[; ;main.c: 434:         clcd_print("Wash",(0x80 + 11));
 [e = F903 + * -> _min `i -> 60 `i -> _sec `i ]
-"464
-[; ;main.c: 464:     if(program_no <= 7)
+"435
+[; ;main.c: 435:     }
 [e $ ! <= -> _program_no `i -> 7 `i 216  ]
-"465
-[; ;main.c: 465:     {
+"436
+[; ;main.c: 436:     else if(total_time >= (time - wash_time - rinse_time))
 {
-"466
-[; ;main.c: 466:     if(total_time >= (time - wash_time))
+"437
+[; ;main.c: 437:        {
 [e $ ! >= F903 - F904 _wash_time 217  ]
-"467
-[; ;main.c: 467:     {
+"438
+[; ;main.c: 438:            clcd_print("Rinse",(0x80 + 11));
 {
-"468
-[; ;main.c: 468:         clcd_print("Wash",(0x80 + 11));
+"439
+[; ;main.c: 439:        }
 [e ( _clcd_print (2 , :s 39C -> + -> 128 `i -> 11 `i `uc ]
-"469
-[; ;main.c: 469:     }
+"440
+[; ;main.c: 440:        else
 }
 [e $U 218  ]
-"470
-[; ;main.c: 470:     else if(total_time >= (time - wash_time - rinse_time))
+"441
+[; ;main.c: 441:            clcd_print("Spin ",(0x80 + 11));
 [e :U 217 ]
 [e $ ! >= F903 - - F904 _wash_time _rinse_time 219  ]
-"471
-[; ;main.c: 471:        {
+"442
+[; ;main.c: 442:     }
 {
-"472
-[; ;main.c: 472:            clcd_print("Rinse",(0x80 + 11));
+"443
+[; ;main.c: 443:     else if(program_no == 8)
 [e ( _clcd_print (2 , :s 40C -> + -> 128 `i -> 11 `i `uc ]
-"473
-[; ;main.c: 473:        }
+"444
+[; ;main.c: 444:     {
 }
 [e $U 220  ]
-"474
-[; ;main.c: 474:        else
+"445
+[; ;main.c: 445:         if(total_time >= (time - (0.40 * time)) )
 [e :U 219 ]
-"475
-[; ;main.c: 475:            clcd_print("Spin ",(0x80 + 11));
+"446
+[; ;main.c: 446:         {
 [e ( _clcd_print (2 , :s 41C -> + -> 128 `i -> 11 `i `uc ]
 [e :U 220 ]
 [e :U 218 ]
-"476
-[; ;main.c: 476:     }
+"447
+[; ;main.c: 447:           clcd_print("Rinse",(0x80 + 11));
 }
 [e $U 221  ]
-"477
-[; ;main.c: 477:     else if(program_no == 8)
+"448
+[; ;main.c: 448:         }
 [e :U 216 ]
 [e $ ! == -> _program_no `i -> 8 `i 222  ]
-"478
-[; ;main.c: 478:     {
+"449
+[; ;main.c: 449:         else
 {
-"479
-[; ;main.c: 479:         if(total_time >= (time - (0.40 * time)) )
+"450
+[; ;main.c: 450:            clcd_print("Spin ",(0x80 + 11));
 [e $ ! >= -> F903 `d - -> F904 `d * .0.40 -> F904 `d 223  ]
-"480
-[; ;main.c: 480:         {
+"451
+[; ;main.c: 451:     }
 {
-"481
-[; ;main.c: 481:           clcd_print("Rinse",(0x80 + 11));
+"452
+[; ;main.c: 452:     else if(program_no == 9)
 [e ( _clcd_print (2 , :s 42C -> + -> 128 `i -> 11 `i `uc ]
-"482
-[; ;main.c: 482:         }
+"453
+[; ;main.c: 453:     {
 }
 [e $U 224  ]
-"483
-[; ;main.c: 483:         else
+"454
+[; ;main.c: 454:         clcd_print("Rinse",(0x80 + 11));
 [e :U 223 ]
-"484
-[; ;main.c: 484:            clcd_print("Spin ",(0x80 + 11));
+"455
+[; ;main.c: 455:     }
 [e ( _clcd_print (2 , :s 43C -> + -> 128 `i -> 11 `i `uc ]
 [e :U 224 ]
-"485
-[; ;main.c: 485:     }
+"456
+[; ;main.c: 456:     else
 }
 [e $U 225  ]
-"486
-[; ;main.c: 486:     else if(program_no == 9)
+"457
+[; ;main.c: 457:     {
 [e :U 222 ]
 [e $ ! == -> _program_no `i -> 9 `i 226  ]
-"487
-[; ;main.c: 487:     {
+"458
+[; ;main.c: 458:         clcd_print("Wash",(0x80 + 11));
 {
-"488
-[; ;main.c: 488:         clcd_print("Rinse",(0x80 + 11));
+"459
+[; ;main.c: 459:     }
 [e ( _clcd_print (2 , :s 44C -> + -> 128 `i -> 11 `i `uc ]
-"489
-[; ;main.c: 489:     }
+"460
+[; ;main.c: 460: 
 }
 [e $U 227  ]
-"490
-[; ;main.c: 490:     else
+"461
+[; ;main.c: 461:     clcd_putch((min/10)+'0',(0xC0 + 6));
 [e :U 226 ]
-"491
-[; ;main.c: 491:     {
+"462
+[; ;main.c: 462:     clcd_putch((min%10)+'0',(0xC0 + 7));
 {
-"492
-[; ;main.c: 492:         clcd_print("Wash",(0x80 + 11));
+"463
+[; ;main.c: 463:     clcd_putch(':',(0xC0 + 8));
 [e ( _clcd_print (2 , :s 45C -> + -> 128 `i -> 11 `i `uc ]
-"493
-[; ;main.c: 493:     }
+"464
+[; ;main.c: 464:     clcd_putch((sec/10)+'0',(0xC0 + 9));
 }
 [e :U 227 ]
 [e :U 225 ]
 [e :U 221 ]
-"495
-[; ;main.c: 495:             clcd_putch((min/10)+'0',(0xC0 + 6));
+"466
+[; ;main.c: 466: 
 [e ( _clcd_putch (2 , -> + -> / -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 6 `i `uc ]
-"496
-[; ;main.c: 496:             clcd_putch((min%10)+'0',(0xC0 + 7));
+"467
+[; ;main.c: 467:     if(sec == 0 && min == 0)
 [e ( _clcd_putch (2 , -> + -> % -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
-"497
-[; ;main.c: 497:             clcd_putch(':',(0xC0 + 8));
+"468
+[; ;main.c: 468:     {
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 8 `i `uc ]
-"498
-[; ;main.c: 498:             clcd_putch((sec/10)+'0',(0xC0 + 9));
+"469
+[; ;main.c: 469: 
 [e ( _clcd_putch (2 , -> + -> / -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 9 `i `uc ]
-"499
-[; ;main.c: 499:             clcd_putch((sec%10)+'0',(0xC0 + 10));
+"470
+[; ;main.c: 470:           TMR2ON = 0;
 [e ( _clcd_putch (2 , -> + -> % -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
-"501
-[; ;main.c: 501:             if(sec == 0 && min == 0)
+"472
+[; ;main.c: 472:           RC2 =0;
 [e $ ! && == -> _sec `i -> 0 `i == -> _min `i -> 0 `i 228  ]
-"502
-[; ;main.c: 502:             {
+"473
+[; ;main.c: 473: 
 {
-"504
-[; ;main.c: 504:                 TMR2ON = 0;
+"475
+[; ;main.c: 475: 
 [e = _TMR2ON -> -> 0 `i `b ]
-"506
-[; ;main.c: 506:                 RC2 =0;
+"477
+[; ;main.c: 477:           clcd_print("Prog. Completed", (0x80 + 0));
 [e = _RC2 -> -> 0 `i `b ]
-"508
-[; ;main.c: 508:                 RC1 = 1;
+"479
+[; ;main.c: 479:           _delay((unsigned long)((2000)*(20000000/4000.0)));
 [e = _RC1 -> -> 1 `i `b ]
-"510
-[; ;main.c: 510:                 clear_screen();
+"481
+[; ;main.c: 481:           operation_mode = 0X01;
 [e ( _clear_screen ..  ]
-"511
-[; ;main.c: 511:                 clcd_print("Prog. Completed", (0x80 + 0));
+"482
+[; ;main.c: 482:           reset_mode = 0X10;
 [e ( _clcd_print (2 , :s 46C -> + -> 128 `i -> 0 `i `uc ]
-"512
-[; ;main.c: 512:                 clcd_print("Remove Cloths",(0xC0 + 0));
+"483
+[; ;main.c: 483:           clear_screen();
 [e ( _clcd_print (2 , :s 47C -> + -> 192 `i -> 0 `i `uc ]
-"513
-[; ;main.c: 513:                 _delay((unsigned long)((2000)*(20000000/4000.0)));
+"484
+[; ;main.c: 484: 
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"514
-[; ;main.c: 514:                 RC1 = 0;
+"485
+[; ;main.c: 485:     }
 [e = _RC1 -> -> 0 `i `b ]
-"515
-[; ;main.c: 515:                 operation_mode = 0X01;
+"486
+[; ;main.c: 486: 
 [e = _operation_mode -> -> 1 `i `uc ]
-"516
-[; ;main.c: 516:                 reset_mode = 0X10;
+"487
+[; ;main.c: 487: }
 [e = _reset_mode -> -> 16 `i `uc ]
-"517
-[; ;main.c: 517:                 clear_screen();
+"488
 [e ( _clear_screen ..  ]
-"522
-[; ;main.c: 522:             }
+"490
 }
 [e :U 228 ]
-"524
-[; ;main.c: 524:     }
+"492
 [e :UE 213 ]
 }
 [a 2C 72 101 97 118 121 0 ]
@@ -1722,7 +1730,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 14C 76 111 119 0 ]
 [a 8C 66 101 100 83 104 101 101 116 115 0 ]
 [a 6C 69 99 111 67 111 116 116 111 110 115 0 ]
-[a 7C 87 111 111 76 108 101 110 115 0 ]
+[a 7C 87 111 111 108 108 101 110 115 0 ]
 [a 47C 82 101 109 111 118 101 32 67 108 111 116 104 115 0 ]
 [a 4C 87 104 105 116 101 115 0 ]
 [a 3C 68 101 108 105 99 97 116 101 115 0 ]
@@ -1730,7 +1738,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 15C 77 101 100 105 117 109 0 ]
 [a 26C 87 97 115 104 105 110 103 32 80 114 111 103 114 97 109 0 ]
 [a 27C 87 97 116 101 114 32 76 101 118 101 108 0 ]
-[a 5C 115 116 97 105 110 32 119 97 115 104 0 ]
+[a 5C 83 116 97 105 110 32 87 97 115 104 0 ]
 [a 39C 87 97 115 104 0 ]
 [a 45C 87 97 115 104 0 ]
 [a 16C 72 105 103 104 0 ]

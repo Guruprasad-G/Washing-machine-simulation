@@ -5,7 +5,7 @@
 unsigned char operation_mode;
 int wash_time, rinse_time, spin_time;
 unsigned char reset_mode, program_no=0, water_level_index=0;
-char *washing_prog[] = {"Daily","Heavy","Delicates","Whites","stain wash","EcoCottons","WooLlens","BedSheets","Rinse+Dry","Dry only","Wash Only","Aqua store"};
+char *washing_prog[] = {"Daily","Heavy","Delicates","Whites","Stain Wash","EcoCottons","Woollens","BedSheets","Rinse+Dry","Dry only","Wash Only","Aqua store"};
 
 char *water_level_arr[]={"Auto","Low","Medium","High","Max"};
 
@@ -25,13 +25,6 @@ static void init_config(void){
        FAN_DDR = 0; //OUTPUT
        
        BUZZER_DDR = 0;
-       
-       
-       
-       
-       
-       
-       
        
        PEIE = 1;
        GIE = 1;
@@ -134,16 +127,21 @@ void power_on_screen(void)
        for(unsigned char i=0; i<16; i++)
        {
             clcd_putch(BLOCK, LINE1(i));
+            __delay_ms(100);
        }
+       
        clcd_print("  POWERING ON   ",LINE2(0));
        clcd_print(" WASHING MACHINE",LINE3(0));
        
        //presenting blocks on LINE4
-       for(unsigned char i=0; i<16; i++)
+       for(unsigned char i=16; i>0; i--)
        {
-         clcd_putch(BLOCK, LINE4(i)); 
+         clcd_putch(BLOCK, LINE4(i));
+         __delay_ms(100);
        }
-       __delay_ms(3000);  //3s delay
+       clcd_putch(BLOCK, LINE4(0));
+       __delay_ms(500);  //3s delay
+
 }
    
 void washing_program_display(unsigned char key)
@@ -161,20 +159,8 @@ void washing_program_display(unsigned char key)
              clear_screen();   
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     clcd_print("Washing Program", LINE1(0));
-    clcd_putch('*', LINE2(0));
+    clcd_putch('>', LINE2(0));
     //display washing program
     
     if(program_no <= 9)
@@ -216,17 +202,8 @@ void water_level_display(unsigned char key)
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-
-    
     clcd_print("Water Level", LINE1(0));
-    clcd_putch('*', LINE2(0));
+    clcd_putch('>', LINE2(0));
     if(water_level_index <= 2)
     {
         clcd_print(water_level_arr[water_level_index], LINE2(2));
@@ -374,8 +351,7 @@ void   set_time_for_program(void)
                     min = 0;
             }
             break;
-            
-            }
+      }
 
 }
 
@@ -446,13 +422,8 @@ void run_program(unsigned char key)
             TMR2ON = 1;
             //start the fan
             FAN = 1;
+          }
         
-        
-        
-        }
-    
-    
-    
     if(key == SW6)//PAUSE THE MACHINE
     {
         TMR2ON = OFF; //TURN OFF TIMER
@@ -492,33 +463,30 @@ void run_program(unsigned char key)
         clcd_print("Wash",LINE1(11));
     }
     
-            clcd_putch((min/10)+'0',LINE2(6));
-            clcd_putch((min%10)+'0',LINE2(7));
-            clcd_putch(':',LINE2(8));
-            clcd_putch((sec/10)+'0',LINE2(9));
-            clcd_putch((sec%10)+'0',LINE2(10));
+    clcd_putch((min/10)+'0',LINE2(6));
+    clcd_putch((min%10)+'0',LINE2(7));
+    clcd_putch(':',LINE2(8));
+    clcd_putch((sec/10)+'0',LINE2(9));
+    clcd_putch((sec%10)+'0',LINE2(10));
             
-            if(sec == 0 && min == 0)
-            {
-                //STOP THE TIMER
-                TMR2ON = OFF;
-                //TURN OFF FAN
-                FAN =OFF;
-                //TURN ON BUZZER
-                BUZZER = ON;
+    if(sec == 0 && min == 0)
+    {
+          //STOP THE TIMER
+          TMR2ON = OFF;
+          //TURN OFF FAN
+          FAN =OFF;
+          //TURN ON BUZZER
+          BUZZER = ON;
                 
-                clear_screen();
-                clcd_print("Prog. Completed", LINE1(0));
-                clcd_print("Remove Cloths",LINE2(0));
-                __delay_ms(2000);
-                BUZZER = OFF;
-                operation_mode = WASHING_PROGRAM_DISPLAY;
-                reset_mode = WASHING_PROGRAM_DISPLAY_RESET;
-                clear_screen();
+          clear_screen();
+          clcd_print("Prog. Completed", LINE1(0));
+          clcd_print("Remove Cloths",LINE2(0));
+          __delay_ms(2000);
+          BUZZER = OFF;
+          operation_mode = WASHING_PROGRAM_DISPLAY;
+          reset_mode = WASHING_PROGRAM_DISPLAY_RESET;
+          clear_screen();
             
-            
-            
-            
-            }
-    
     }
+    
+}
